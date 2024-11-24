@@ -19,6 +19,7 @@ class HashTable:
         index = self.hash_function(key)
         self.table[index].append([key,value])
 
+
 # Example usage
 table = HashTable(5)
 table.set(238, "hello")  # 238 % 5 = 3
