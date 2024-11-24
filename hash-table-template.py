@@ -1,18 +1,23 @@
 class HashTable:
     def __init__(self, size):
         self.size = size
-        self.table = [None] * size # Initialize the table with `None`
+        self.table = [[] for i in range(size)]
 
     def hash_function(self, key):
-        return key % self.size  # Compute the index using modulo
+        return key % self.size
     
     def get(self, key):
         index = self.hash_function(key)
-        return self.table[index]  # Return the value if the key matches
+        if len(self.table[index]) != 0:
+            for pair in self.table[index]:
+                if pair[0] == key:
+                    return pair[1]
+        else:
+            return None
 
     def set(self, key, value):
         index = self.hash_function(key)
-        self.table[index] = value  # Store the key-value pair at the hashed index
+        self.table[index].append([key,value])
 
 # Example usage
 table = HashTable(5)
